@@ -1,5 +1,5 @@
 import { useState,useRef,useEffect, useReducer } from "react";
-
+import { db } from "../firebaseinit";
 
 function blogsReducer(state,action){
     switch(action.type){
