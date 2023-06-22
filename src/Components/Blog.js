@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { db } from "../firebaseinit";
 
 //Import all the required functions from fireStore
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 
 export default function Blog() {
 
@@ -41,18 +41,27 @@ export default function Blog() {
         // await addDoc(docRef, {
         //         title: formData.title,
         //         content: formData.content,
-                // createdOn: new Date()
+        //         createdOn: new Date()
         //     });
 
 
-
         // Add a new document with a generated id.
-        const docRef = await addDoc(collection(db, "blogs"), {
+        // await addDoc(collection(db, "blogs"), {
+        //     title: formData.title,
+        //     content: formData.content,
+        //     createdOn: new Date()
+        // });
+        // // console.log("Document written with ID: ", docRef.id);
+
+
+
+        const docRef = doc(collection(db, "blogs"));
+
+        await setDoc(docRef, {
             title: formData.title,
             content: formData.content,
             createdOn: new Date()
         });
-        // console.log("Document written with ID: ", docRef.id);
 
         /*********************************************************************** */
 
